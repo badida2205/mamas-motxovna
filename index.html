@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modern Window Glasses Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet" />
+  <div id="languageModal" class="modal">
+    <div class="modal-content">
+      <h2>Do you want to change the language?</h2>
+      <div class="modal-buttons">
+        <button onclick="selectLanguage('en')">English</button>
+        <button onclick="selectLanguage('ka')">ქართული</button>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal CSS -->
+<style>
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 300px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  .modal-content h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .modal-buttons button {
+    padding: 10px 16px;
+    background: #0f62fe;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .modal-buttons button:hover {
+    background: #0049c6;
+  }
+</style>
+
+<!-- JS -->
+<script>
+  function selectLanguage(lang) {
+    console.log('Selected language:', lang);
+    localStorage.setItem('preferredLanguage', lang); // Save choice
+    document.getElementById('languageModal').style.display = 'none';
+
+    // Optional: redirect or change language dynamically
+    // window.location.href = lang === 'ka' ? '/ka.html' : '/en.html';
+  }
+
+  window.addEventListener('load', () => {
+    const lang = localStorage.getItem('preferredLanguage');
+    if (!lang) {
+      document.getElementById('languageModal').style.display = 'flex';
+    }
+  });
+
+ const translations = {
+    en: {
+      title: "Welcome to Window Glass Co.",
+      description: "We provide the best window glass in Georgia.",
+      contactBtn: "Contact Us"
+    },
+    ka: {
+      title: "მოგესალმებით Window Glass Co.-ში",
+      description: "ჩვენ გთავაზობთ საუკეთესო ფანჯრის მინას საქართველოში.",
+      contactBtn: "დაგვიკავშირდით"
+    }
+  };
+
+  function selectLanguage(lang) {
+    localStorage.setItem('preferredLanguage', lang);
+    document.getElementById('languageModal').style.display = 'none';
+    applyTranslation(lang);
+  }
+
+  function applyTranslation(lang) {
+    const t = translations[lang];
+    if (!t) return;
+
+    document.getElementById('title').textContent = t.title;
+    document.getElementById('description').textContent = t.description;
+    document.getElementById('contactBtn').textContent = t.contactBtn;
+  }
+
+  // When the page loads
+  window.addEventListener('load', () => {
+    const savedLang = localStorage.getItem('preferredLanguage') || null;
+    
+    if (savedLang) {
+      applyTranslation(savedLang);
+      document.getElementById('languageModal').style.display = 'none';
+    } else {
+      document.getElementById('languageModal').style.display = 'flex';
+    }
+  });
+</script>
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f0f5f9 0%, #d9e2ec 100%);
+      color: #1b2a41;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover, a:focus {
+      color: #005fa3;
+      outline: none;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: #ffffffcc;
+      backdrop-filter: saturate(180%) blur(20px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #1b2a41;
+      user-select: none;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+    nav a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    nav a.active,
+    nav a:hover,
+    nav a:focus {
+      background: #0077cc;
+      color: #fff;
+      box-shadow: 0 4px 10px rgb(0 119 204 / 0.4);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 600px;
+      background: url(img/shusha.jpeg) center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      color: #f0f5f9;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .hero h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 4rem;
+      margin-bottom: 20px;
+      letter-spacing: 6px;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 700px;
+      font-weight: 500;
+      animation: fadeInUp 1.3s ease forwards;
+      opacity: 0;
+    }
+    .hero button {
+      margin-top: 40px;
+      padding: 18px 60px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 40px;
+      background: #0077cc;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgb(0 119 204 / 0.6);
+      transition: background-color 0.3s ease;
+      animation: fadeInUp 1.6s ease forwards;
+      opacity: 0;
+    }
+    .hero button:hover,
+    .hero button:focus {
+      background: #005fa3;
+      outline: none;
+      box-shadow: 0 8px 20px rgb(0 95 163 / 0.8);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+    }
+
+    /* Sections */
+    section {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 0 20px;
+      animation: fadeInUp 0.7s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #0f2147;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    section h3::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 5px;
+      background: #0077cc;
+      border-radius: 3px;
+    }
+
+    /* Types Grid */
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 40px;
+    }
+
+    .type-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: default;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .type-card:hover,
+    .type-card:focus-within {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 30px rgb(0 0 0 / 0.18);
+      outline: none;
+    }
+    .type-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      user-select: none;
+    }
+    .type-card-content {
+      padding: 20px 24px 28px;
+    }
+    .type-card-content h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #003366;
+    }
+    .type-card-content p {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #505f79;
+      line-height: 1.4;
+    }
+
+    /* Benefits */
+    .benefits-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+    .benefit-item {
+      background: #0077cc;
+      color: white;
+      flex: 1 1 240px;
+      max-width: 300px;
+      padding: 30px 25px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      text-align: center;
+      box-shadow: 0 8px 25px rgb(0 119 204 / 0.35);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: default;
+      user-select: none;
+    }
+    .benefit-item:hover,
+    .benefit-item:focus {
+      background-color: #005fa3;
+      transform: translateY(-6px);
+      outline: none;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: #f5faff;
+      border-radius: 20px;
+      padding: 60px 30px;
+      box-shadow: 0 10px 30px rgb(0 0 0 / 0.1);
+      max-width: 700px;
+      margin: 0 auto 120px;
+      text-align: center;
+    }
+    .contact-section h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #004080;
+      user-select: none;
+    }
+    .contact-section p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      color: #334e7a;
+      font-weight: 500;
+    }
+    .contact-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+    .contact-section input,
+    .contact-section textarea {
+      width: 100%;
+      max-width: 500px;
+      padding: 14px 18px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: 2px solid #d1d9e6;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+      resize: vertical;
+    }
+    .contact-section input:focus,
+    .contact-section textarea:focus {
+      border-color: #0077cc;
+      outline: none;
+      box-shadow: 0 0 8px rgb(0 119 204 / 0.5);
+    }
+    .contact-section button {
+      background: #0077cc;
+      color: white;
+      padding: 18px 50px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgb(0 119 204 / 0.5);
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .contact-section button:hover,
+    .contact-section button:focus {
+      background: #005fa3;
+      outline: none;
+      box-shadow: 0 10px 25px rgb(0 95 163 / 0.7);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 12px 20px;
+        flex-direction: column;
+        gap: 10px;
+      }
+      nav {
+        gap: 15px;
+      }
+      .hero h2 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      section {
+        margin: 50px 20px;
+      }
+      .types-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      .benefits-list {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .contact-section {
+        padding: 40px 20px;
+      }
+      .contact-section input,
+      .contact-section textarea {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>NULUMA</h1>
+  <nav aria-label="Primary Navigation">
+    <a href="#types" class="active">Types</a>
+    <a href="#benefits">Benefits</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" role="banner" aria-label="Main banner">
+    <h2>Clear Vision, Durable Protection</h2>
+    <p>Explore our premium window glasses engineered for safety, beauty, and energy efficiency.</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a Quote</button>
+  </section>
+
+  <section id="types" tabindex="-1" aria-label="Types of window glasses">
+    <h3>Types of Window Glasses</h3>
+    <div class="types-grid">
+      <article class="type-card" tabindex="0" aria-describedby="temp-desc">
+        <img src="img/temp.jpeg" alt="Tempered glass window example" />
+        <div class="type-card-content">
+          <h4>Tempered Glass</h4>
+          <p id="temp-desc">Strong and safe glass, designed to break into small harmless pieces.</p>
+        </div>
+      </article>
+      <article class="type-card" tabindex="0" aria-describedby="double-desc">
+        <img src="img/glazed.webp" alt="Double glazed window" />
+        <div class="type-card-content">
+          <h4>Double Glazed</h4>
+          <p id="double-desc">Two glass panes separated by air or gas for insulation and noise reduction.</p>
+        </div>
+      </article>
+      <article class="type-card" tabindex="0" aria-describedby="laminate-desc">
+        <img src="img/laminated.jpg" alt="Laminated glass window" />
+        <div class="type-card-content">
+          <h4>Laminated Glass</h4>
+          <p id="laminate-desc">Glass bonded with plastic layer for extra security and UV protection.</p>
+        </div>
+      </article>
+      <article class="type-card" tabindex="0" aria-describedby="lowe-desc">
+        <img src="img/lowe.png" alt="Low-E coated glass" />
+        <div class="type-card-content">
+          <h4>Low-E Coated Glass</h4>
+          <p id="lowe-desc">Glass with special coating to reflect heat and improve energy efficiency.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+<section id="types" tabindex="-1" aria-label="Types of window glasses">
+    <h3>Glass railings</h3>
+    <div class="types-grid">
+      <article class="type-card" tabindex="0" aria-describedby="temp-desc">
+        <img src="img/norail.jpg" alt="Tempered glass window example" />
+        <div class="type-card-content">
+          <h4>No Reil</h4>
+          <p id="temp-desc">Glass railings can be installed with or without a top rail.</p>
+        </div>
+      </article>
+      <article class="type-card" tabindex="0" aria-describedby="double-desc">
+        <img src="img/toprail.webp" alt="Double glazed window" />
+        <div class="type-card-content">
+          <h4>Top rail</h4>
+          <p id="double-desc"> A top rail shall not be required where the glass balusters are laminated glass with two or more glass plies of equal thickness and the same glass type when approved by the building official.</p>
+        </div>
+      </article>
+      <article class="type-card" tabindex="0" aria-describedby="laminate-desc">
+        <img src="img/handrail.jpg" alt="Laminated glass window" />
+        <div class="type-card-content">
+          <h4>Handrail</h4>
+          <p id="laminate-desc">handrails are either mounted on top of the glass panels (if a post system is used) or integrated directly into a frameless system.</p>
+        </div>
+      </article>
+  </section>
+
+
+  <section id="benefits" tabindex="-1" aria-label="Benefits of window glasses">
+    <h3>Benefits</h3>
+    <div class="benefits-list">
+      <div class="benefit-item" tabindex="0" aria-label="Enhanced Safety">Enhanced Safety</div>
+      <div class="benefit-item" tabindex="0" aria-label="Energy Efficiency">Energy Efficiency</div>
+      <div class="benefit-item" tabindex="0" aria-label="UV Protection">UV Protection</div>
+      <div class="benefit-item" tabindex="0" aria-label="Noise Reduction">Noise Reduction</div>
+      <div class="benefit-item" tabindex="0" aria-label="Improved Aesthetics">Improved Aesthetics</div>
+    </div>
+  </section>
+
+  <section id="contact" tabindex="-1" class="contact-section" aria-label="Contact section">
+    <h3>Contact Us</h3>
+    <p>Ready to upgrade your windows? Send us a message and we’ll get back to you shortly.</p>
+    <form id="contactForm" novalidate>
+      <input type="text" id="name" name="name" placeholder="Your Full Name" required aria-required="true" />
+      <input type="email" id="email" name="email" placeholder="Your Email Address" required aria-required="true" />
+      <textarea id="message" name="message" rows="5" placeholder="Your Message" required aria-required="true"></textarea>
+      <button type="submit" aria-label="Submit Contact Form">Send Message</button>
+    </form>
+    <p id="formMessage" role="alert" aria-live="polite" style="margin-top: 20px; font-weight: 600;"></p>
+  </section>
+</main>
+
+<footer>
+  <!-- &copy; 2025 Window Glasses. All rights reserved. -->
+   <footer class="contact-footer">
+  <div class="footer-left">
+    <h3>Contact Us</h3>
+    <p>We’re here to help! Reach out for quotes, questions, or feedback.</p>
+  </div>
+  <div class="footer-right">
+    <ul>
+      <li><strong>Name:</strong> NULUMA</li>
+      <li><strong>Phone:</strong> +995 599 03 03 44</li>
+      <li><strong>Email:</strong> davitferadze@gmail.com</li>
+      <li><strong>Location:</strong> Tbilisi, Georgia</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- CSS -->
+<style>
+  .contact-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #0f1e33;
+    color: #f1f5f9;
+    padding: 50px 40px;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .footer-left {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .footer-left h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .footer-left p {
+    font-size: 1rem;
+    color: #cbd5e1;
+  }
+
+  .footer-right {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .footer-right ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .footer-right li {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #e2e8f0;
+  }
+
+  .footer-right strong {
+    color: #60a5fa;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .contact-footer {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+
+    .footer-left, .footer-right {
+      text-align: center;
+    }
+
+    .footer-left h3 {
+      font-size: 1.6rem;
+    }
+  }
+</style>
+</footer>
+
+<script>
+  // Highlight active nav link on scroll
+  const navLinks = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('section');
+
+  function activateNav() {
+    let index = sections.length;
+
+    while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+
+    navLinks.forEach((link) => link.classList.remove('active'));
+    navLinks[index].classList.add('active');
+  }
+
+  activateNav();
+  window.addEventListener('scroll', activateNav);
+
+  // Animate sections on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  sections.forEach(section => observer.observe(section));
+
+  // Simple form validation and feedback
+  const form = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      formMessage.textContent = 'Please fill out all required fields correctly.';
+      formMessage.style.color = 'red';
+      return;
+    }
+
+    formMessage.style.color = '#0077cc';
+    formMessage.textContent = 'Thank you for your message! We will contact you soon.';
+    form.reset();
+  });
+
+  
+</script>
+
+</body>
+</html>
