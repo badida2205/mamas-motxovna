@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet" />
   <div id="languageModal" class="modal">
     <div class="modal-content">
-      <h2>Do you want to change the language?</h2>
+      <h2>Choose language</h2>
       <div class="modal-buttons">
         <button onclick="selectLanguage('en')">English</button>
         <button onclick="selectLanguage('ka')">ქართული</button>
@@ -47,8 +47,12 @@
   .modal-buttons {
     display: flex;
     justify-content: space-around;
+    
   }
-
+.modal-buttons button{
+  margin-left: 10px;
+  margin-right: 10px;
+}
   .modal-buttons button {
     padding: 10px 16px;
     background: #0f62fe;
@@ -477,7 +481,7 @@
   <h1>NULUMA</h1>
   <nav aria-label="Primary Navigation">
     <a href="#types" class="active">Types</a>
-    <a href="#benefits">Benefits</a>
+    <!-- <a href="#benefits">Benefits</a> -->
     <a href="#contact">Contact</a>
   </nav>
 </header>
